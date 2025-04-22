@@ -19,16 +19,18 @@ install it.
 This Bruno collection requires these four variables being defined in a
 global environment:
 
-* `okapi\_url`
-* `okapi\_tenant`
-* `okapi\_username`
-* `okapi\_password`
+* `okapi_url`
+* `okapi_tenant`
+* `okapi_username`
+* `okapi_password`
 
-The `okapi\_url` must not end with a slash.
+The `okapi_url` must not end with a slash.
 
 Example for folio-etesting-snapshot-kong:
 
-| `okapi\_url` | `https://folio-etesting-snapshot-kong.ci.folio.org` |
-| `okapi\_tenant` | `diku` |
-| `okapi\_username` | `diku\_admin` |
-| `okapi\_password` | `admin` |
+| name | value |
+| --- | --- |
+| `okapi_url` | `https://folio-etesting-snapshot-kong.ci.folio.org` |
+| `okapi_tenant` | `diku` |
+| `okapi_username` | `diku_admin` |
+| `okapi_password` | `admin` |
