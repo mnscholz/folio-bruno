@@ -1,0 +1,15 @@
+meta {
+  name: Get Manual Patron Blocks by User Id
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{okapi_url}}/manualblocks?query=userId=="2205005b-ca51-4a04-87fd-938eefa8f6de"
+  body: none
+  auth: inherit
+}
+
+params:query {
+  query: userId=="2205005b-ca51-4a04-87fd-938eefa8f6de"
+}

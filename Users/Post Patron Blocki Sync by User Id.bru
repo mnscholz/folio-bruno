@@ -1,0 +1,18 @@
+meta {
+  name: Post Patron Blocki Sync by User Id
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{okapi_url}}/automated-patron-blocks/synchronization/job
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "scope":"user",
+      "userId":"2205005b-ca51-4a04-87fd-938eefa8f6de"
+  }
+}

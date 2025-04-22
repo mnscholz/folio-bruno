@@ -1,0 +1,15 @@
+meta {
+  name: Find User by Date Updated
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{okapi_url}}/users?query= metadata.updatedDate >= "2025-03-03"
+  body: none
+  auth: inherit
+}
+
+params:query {
+  query:  metadata.updatedDate >= "2025-03-03"
+}

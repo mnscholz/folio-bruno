@@ -1,0 +1,15 @@
+meta {
+  name: Find User by Barcode
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{okapi_url}}/users?query=barcode=="123"
+  body: none
+  auth: inherit
+}
+
+params:query {
+  query: barcode=="123"
+}

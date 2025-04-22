@@ -1,0 +1,15 @@
+meta {
+  name: Count Items
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{okapi_url}}/item-storage/items?limit=0
+  body: none
+  auth: inherit
+}
+
+params:query {
+  limit: 0
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Count Instances
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{okapi_url}}/instance-storage/instances?limit=0
+  body: none
+  auth: inherit
+}
+
+params:query {
+  limit: 0
+}

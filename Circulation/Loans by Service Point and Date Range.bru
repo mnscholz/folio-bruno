@@ -1,0 +1,16 @@
+meta {
+  name: Loans by Service Point and Date Range
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{okapi_url}}/circulation/loans?limit=0&query=(checkoutServicePointId == "REPLACE WITH SERVICE POINT ID" and (loanDate >= REPLACE WITH BEGINNING RANGE IN YYYY-MM-DD FORMAT* and loanDate <= REPLACE WITH ENDING RANGE IN YYYY-MM-DD FORMAT*))
+  body: none
+  auth: inherit
+}
+
+params:query {
+  limit: 0
+  query: (checkoutServicePointId == "REPLACE WITH SERVICE POINT ID" and (loanDate >= REPLACE WITH BEGINNING RANGE IN YYYY-MM-DD FORMAT* and loanDate <= REPLACE WITH ENDING RANGE IN YYYY-MM-DD FORMAT*))
+}

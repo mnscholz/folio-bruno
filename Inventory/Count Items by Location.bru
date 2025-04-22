@@ -1,0 +1,16 @@
+meta {
+  name: Count Items by Location
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{okapi_url}}/item-storage/items?limit=0&query=effectiveLocationId == "fcd64ce1-6995-48f0-840e-89ffa2288371" NOT discoverySuppress==true
+  body: none
+  auth: inherit
+}
+
+params:query {
+  limit: 0
+  query: effectiveLocationId == "fcd64ce1-6995-48f0-840e-89ffa2288371" NOT discoverySuppress==true
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Get Automated Patchon Blocks by User Id
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{okapi_url}}/automated-patron-blocks/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

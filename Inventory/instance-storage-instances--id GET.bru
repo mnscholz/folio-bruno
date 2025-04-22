@@ -1,0 +1,15 @@
+meta {
+  name: /instance-storage/instances/:id GET
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{okapi_url}}/instance-storage/instances/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 5b1eb450-ff9f-412d-a9e7-887f6eaeb5b4
+}

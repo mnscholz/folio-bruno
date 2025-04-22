@@ -1,0 +1,16 @@
+meta {
+  name: In-House Use by Date Range
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{okapi_url}}/check-in-storage/check-ins?limit=0&query=(itemStatusPriorToCheckIn=="Available" and occurredDateTime >= "REPLACE WITH BEGINNING RANGE IN YYYY-MM-DD FORMAT*" and occurredDateTime <= "REPLACE WITH ENDING RANGE IN YYYY-MM-DD FORMAT**")
+  body: none
+  auth: inherit
+}
+
+params:query {
+  limit: 0
+  query: (itemStatusPriorToCheckIn=="Available" and occurredDateTime >= "REPLACE WITH BEGINNING RANGE IN YYYY-MM-DD FORMAT*" and occurredDateTime <= "REPLACE WITH ENDING RANGE IN YYYY-MM-DD FORMAT**")
+}

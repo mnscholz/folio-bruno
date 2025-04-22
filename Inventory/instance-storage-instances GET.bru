@@ -1,0 +1,16 @@
+meta {
+  name: /instance-storage/instances GET
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{okapi_url}}/instance-storage/instances?query=title="a*"&limit=5
+  body: none
+  auth: inherit
+}
+
+params:query {
+  query: title="a*"
+  limit: 5
+}

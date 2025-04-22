@@ -1,0 +1,50 @@
+script:pre-request {
+  // Set X-Okapi-Token to the old token if at least half of the exiration time remains,
+  // otherwise to a new token
+  
+  req.setHeader('X-Okapi-Tenant', bru.getGlobalEnvVar('okapi_tenant'));
+  const oldExpiration = bru.getGlobalEnvVar('okapi_access_token_expiration');
+  if (oldExpiration != null && new Date(oldExpiration).getTime() > Date.now()) {
+    req.setHeader('X-Okapi-Token', bru.getGlobalEnvVar('okapi_access_token'));
+    console.info('Setting X-Okapi-Token to old token');
+  } else {
+    const axios = require('axios');
+    const url = bru.getGlobalEnvVar('okapi_url') + '/authn/login-with-expiry';
+    const body = {
+      username: bru.getGlobalEnvVar('okapi_username'),
+      password: bru.getGlobalEnvVar('okapi_password'),
+      tenant:   bru.getGlobalEnvVar('okapi_tenant'),
+    };
+    const config = {
+      headers: {
+        'X-Okapi-Tenant': bru.getGlobalEnvVar('okapi_tenant'),
+        'Content-Type': 'application/json',
+      },
+    };
+    const result = await axios.post(url, body, config)
+      .catch(e => {
+        throw new Error('Login to ' + url + ' failed: ' + e.message);
+      });
+    if (result.status !== 201) {
+      throw new Error('Expected 201 as HTTP response status code from ' + url + ' but got ' + result.status);
+    }
+    const cookie = result.headers['set-cookie'];
+    if (!cookie) {
+      throw new Error("Login to " + url + " doesn't return a cookie");
+    }
+    const keyValue = cookie.split(/ *; */).find(x => x.startsWith('folioAccessToken='));
+    if (!keyValue) {
+      throw new Error("Cookie doesn't contain folioAccessToken: " + cookie);
+    }
+    const token = keyValue.substring(17);
+    bru.setGlobalEnvVar('okapi_access_token', token);
+    req.setHeader('X-Okapi-Token', token);
+    
+    const accessTokenExpiration = result.data.accessTokenExpiration;
+    const remaining = new Date(accessTokenExpiration).getTime() - Date.now();
+    // the remaining time should allow for multiple API calls
+    const halfExpiration = new Date(Date.now() + remaining/2).toISOString();
+    bru.setGlobalEnvVar('okapi_access_token_expiration', halfExpiration);
+    console.info('Setting X-Okapi-Token to new token');
+  }
+}

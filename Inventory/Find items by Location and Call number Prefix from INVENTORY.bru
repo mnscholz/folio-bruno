@@ -1,0 +1,17 @@
+meta {
+  name: Find items by Location and Call number Prefix from INVENTORY
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{okapi_url}}/item-storage/items?limit=100&offset=0&query=(effectiveCallNumberComponents.prefix="A*" AND effectiveLocationId=="fcd64ce1-6995-48f0-840e-89ffa2288371") sortBy effectiveShelvingOrder
+  body: none
+  auth: inherit
+}
+
+params:query {
+  limit: 100
+  offset: 0
+  query: (effectiveCallNumberComponents.prefix="A*" AND effectiveLocationId=="fcd64ce1-6995-48f0-840e-89ffa2288371") sortBy effectiveShelvingOrder
+}
