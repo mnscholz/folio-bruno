@@ -34,3 +34,5 @@ Example for folio-etesting-snapshot-kong:
 | `okapi_tenant` | `diku` |
 | `okapi_username` | `diku_admin` |
 | `okapi_password` | `admin` |
+
+https://folio-org.atlassian.net/wiki/spaces/FOLIOtips/pages/952270854/Bruno has more details how to use Bruno with FOLIO.
