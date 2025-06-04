@@ -1,0 +1,16 @@
+meta {
+  name: /search/instances
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{okapi_url}}/search/instances?query=contributors.name="Barockorchester"&limit=5
+  body: none
+  auth: inherit
+}
+
+params:query {
+  query: contributors.name="Barockorchester"
+  limit: 5
+}
