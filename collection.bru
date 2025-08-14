@@ -28,10 +28,14 @@ script:pre-request {
     if (result.status !== 201) {
       throw new Error('Expected 201 as HTTP response status code from ' + url + ' but got ' + result.status);
     }
-    const cookie = result.headers['set-cookie'];
-    if (!cookie) {
+
+    const cookies = result.headers['set-cookie'];
+    if (!cookies) {
       throw new Error("Login to " + url + " doesn't return a cookie");
     }
+    const cookie = Array.isArray(cookies) ?
+          cookies.find(x => x.startsWith('folioAccessToken='))
+        : cookies;
     const keyValue = cookie.split(/ *; */).find(x => x.startsWith('folioAccessToken='));
     if (!keyValue) {
       throw new Error("Cookie doesn't contain folioAccessToken: " + cookie);
